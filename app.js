@@ -1,9 +1,13 @@
+require('dotenv').config();
 var restify = require('restify');
 var mongoose = require('mongoose');
 var Person = require('./models/person');
+const DBUSER = process.env.DBUSER;
+const DBPWD = process.env.DBPWD;
+const DBLINK = process.env.DBLINK;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://Lisa:Admin123@ds129720.mlab.com:29720/introtonode');
+mongoose.connect(`mongodb://${DBUSER}:${DBPWD}@${DBLINK}`);
 
 var server = restify.createServer();
 
