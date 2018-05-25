@@ -50,7 +50,7 @@ server.get('/person', function(req, res) {
 	})
 })
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 8080, function () {
 	console.log('%s listening at %s', server.name, server.url);
 });
 
