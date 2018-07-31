@@ -52,7 +52,30 @@ server.get('/person', function(req, res) {
 	Person.find({}, function(err, docs) {
 		res.send(200, docs);
 	})
-})
+});
+
+server.get('/randomperson', function (req,res) {
+	Person.findOne({}, function(err,doc) {
+
+server.get('/findrandomperson', function (req,res) {
+		// Get the count of all users
+	Person.count().exec(function (err, count) {
+
+	  // Get a random entry
+		res.send(200,doc);
+	})
+});
+	  var random = Math.floor(Math.random() * count)
+
+	  // Again query all users but only fetch one offset by our random #
+	  Person.findOne().skip(random).exec(
+	    function (err, doc) {
+	      // Tada! random user
+	      res.send(200,doc);
+	    })
+	})
+});
+
 
 server.listen(process.env.PORT || 8080, function () {
 	console.log('%s listening at %s', server.name, server.url);
